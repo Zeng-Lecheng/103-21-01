@@ -139,5 +139,5 @@ dmypy.json
 cython_debug/
 
 # IDEs
-.iea/
+.idea/
 .vscode/

@@ -49,4 +49,9 @@ class Schedule():
         else:
             print("can't sort by "+str(field)+" yet")
             return self
- 
+    def title (self,phrase):
+        
+
+    def description (self,phrase):
+    
+    #must create own method

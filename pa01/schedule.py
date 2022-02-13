@@ -11,7 +11,7 @@ class Schedule():
     '''
     def __init__(self,courses=()):
         ''' courses is a tuple of the courses being offered '''
-        self.courses = courses
+        self.courses = tuple(courses)
 
     def load_courses(self):
         ''' load_courses reads the course data from the courses.json file'''
@@ -49,9 +49,24 @@ class Schedule():
         else:
             print("can't sort by "+str(field)+" yet")
             return self
-    def title (self,phrase):
-        
 
-    def description (self,phrase):
-    
-    #must create own method
+    def title (self, phrase):
+        return Schedule([course for course in self.courses if phrase in course['name']])
+
+    def description (self, phrase):
+        return Schedule([course for course in self.courses if phrase in course['description']])
+
+    def code(self, phrase):
+        return Schedule([course for course in self.courses if phrase in ''.join(course['code'])])
+
+    def days(self, phrase):
+        course_list = []
+        for course in self.courses:
+            for time in course['time']:
+                for char in phrase:
+                    # Take every character in phrase as key to check if a course matches it
+                    if char in time['days']:
+                        course_list.append(course)
+                        break
+
+        return Schedule(course_list)

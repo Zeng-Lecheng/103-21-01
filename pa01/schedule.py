@@ -53,10 +53,10 @@ class Schedule():
             return self
 
     def title(self, phrase):
-        return Schedule([course for course in self.courses if phrase in course['name']])
+        return Schedule([course for course in self.courses if phrase in course['name'].split()])
 
     def description(self, phrase):
-        return Schedule([course for course in self.courses if phrase in course['description']])
+        return Schedule([course for course in self.courses if phrase in course['description'].split()])
 
     def code(self, phrase):
         return Schedule([course for course in self.courses if phrase in ''.join(course['code'])])

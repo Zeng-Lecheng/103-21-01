@@ -21,6 +21,7 @@ subject (filter by subject, e.g. COSI, or LALS)
 title  (filter by phrase in title)
 description (filter by phrase in description)
 timeofday (filter by day and time, e.g. meets at 11 on Wed)
+limit (filter by class enrollement limit)
 '''
 
 terms = {c['term'] for c in schedule.courses}
@@ -54,6 +55,10 @@ def topmenu():
         elif command in ['tt','title']:
             phrase = input("enter a keyword in the title of the course: ")
             schedule=schedule.title(phrase)
+        elif command in ['l','limit']:
+            limit=int(input("enter in a desired class limit: "))
+            print('The courses listed have an enrollment limit less than or equal to',limit)
+            schedule=schedule.limit(limit)
         elif command in ['i','instructor']:
             instructor=input("enter the last name of the desired instructor: ")
             schedule=schedule.lastname(instructor)

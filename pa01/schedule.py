@@ -6,7 +6,7 @@ by filtering, mapping, printing, etc.
 import json
 
 
-class Schedule():
+class Schedule:
     """
     Schedule represent a list of Brandeis classes with operations for filtering
     """
@@ -68,8 +68,9 @@ class Schedule():
         course_list = []
         for course in self.courses:
             for time in course['time']:
-                for char in phrase:
-                    # Take every character in phrase as key to check if a course matches it
+                # Assume that users will provide days separated with ',' (should be consistent with course_search)
+                # 'tu' for Tuesday, 'th' for Thursday, so detecting single character is bad
+                for char in phrase.split(','):
                     if char in time['days']:
                         course_list.append(course)
                         break

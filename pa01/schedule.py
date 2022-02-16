@@ -59,11 +59,11 @@ class Schedule():
         return Schedule([course for course in self.courses if phrase in course['description'].split()])
 
     def code(self, phrase):
-        return Schedule([course for course in self.courses if phrase in ''.join(course['code'])])
+        return Schedule([course for course in self.courses if phrase in ' '.join(course['code'])])
 
     def limit(self, limits):
         return Schedule ([course for course in self.courses if course['limit']!=None and course['limit']<=limits])
-        
+
     def days(self, phrase):
         course_list = []
         for course in self.courses:

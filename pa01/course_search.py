@@ -62,6 +62,9 @@ def topmenu():
         elif command in ['i','instructor']:
             instructor=input("enter the last name of the desired instructor: ")
             schedule=schedule.lastname(instructor)
+        elif command in ['c','course']:
+            code=input("enter course code (e.g. COSI 103A): ")
+            schedule=schedule.code(code)
         else:
             print('command',command,'is not supported')
             continue

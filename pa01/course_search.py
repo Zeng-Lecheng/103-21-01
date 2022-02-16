@@ -32,7 +32,7 @@ def topmenu():
     '''
     global schedule
     while True:         
-        command = input(">> (h for help) ")
+        command = input(">> (press h for help) ")
         if command=='quit':
             return
         elif command in ['h','help']:
@@ -84,5 +84,8 @@ def print_course(course):
           course['name'],course['term'],course['instructor'])
 
 if __name__ == '__main__':
+    
+    print("\nNavigate through Brandeis's offered courses! Filter through the many courses by: ")
+    print ("term, course, instructor, subject, description keywords, title keywords, time of instruction, and enrollment limit. \n")
     topmenu()
 

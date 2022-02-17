@@ -70,10 +70,15 @@ def topmenu():
             print('command',command,'is not supported')
             continue
         print("courses has",len(schedule.courses),'elements',end="\n\n")
-        if len(schedule.courses) >0:
-            print('here are the first 10')
-        for course in schedule.courses[:10]:
-            print_course(course)
+        if len(schedule.courses) >=10:
+            print('here are the first 10: ')
+            for course in schedule.courses[:10]:
+                print_course(course)
+        else:
+            print ("here are the available courses: ")
+            for course in schedule.courses:
+                print_course(course)
+        
         print('\n'*3)
 
 def print_course(course):

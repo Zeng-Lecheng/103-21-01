@@ -46,30 +46,38 @@ class Schedule:
         return Schedule([course for course in self.courses if course['subject'] in subjects])
 
     def sort(self, field):
+        """ sort results according to subject """
         if field == 'subject':
             return Schedule(sorted(self.courses, key=lambda course: course['subject']))
-        else:
-            print("can't sort by " + str(field) + " yet")
-            return self
+        print("can't sort by " + str(field) + " yet")
+        return self
 
     def title(self, phrase):
+        """ title filters the course by title """
         return Schedule([course for course in self.courses if phrase in course['name']])
 
     def description(self, phrase):
+        """ description filters the course by description """
         return Schedule([course for course in self.courses if phrase in course['description']])
 
     def code(self, phrase):
-        return Schedule([course for course in self.courses if phrase in ' '.join(course['code'])])
+        """ code filters the course by course code"""
+        return Schedule([course for course in self.courses \
+                         if phrase in ' '.join(course['code'])])
 
     def limit(self, limits):
-        return Schedule([course for course in self.courses if course['limit']!=None and course['limit']<=limits])
+        """ limit filters the course by capacity """
+        return Schedule([course for course in self.courses \
+                         if course['limit'] is not None and course['limit'] <= limits])
 
     def days(self, phrase):
+        """ days filters thte course by days of week """
         course_list = []
         for course in self.courses:
             for time in course['time']:
-                # Assume that users will provide days separated with ',' (should be consistent with course_search)
-                # 'tu' for Tuesday, 'th' for Thursday, so detecting single character is bad
+                # Assume that users will provide days separated with ',', so as to be sonsistent
+                # with the original data and compatible with sourse_search, 'tu' for Tuesday,
+                # 'th' for Thursday, so detecting single character is bad
                 for char in phrase.split(','):
                     if char in time['days']:
                         course_list.append(course)

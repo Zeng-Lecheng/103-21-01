@@ -76,3 +76,6 @@ class Schedule:
                         break
 
         return Schedule(course_list)
+
+    def details(self, phrase):
+        return Schedule([course for course in self.courses if phrase in course['details']])

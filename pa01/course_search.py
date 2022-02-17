@@ -65,10 +65,12 @@ def topmenu():
         elif command in ['c','course']:
             code=input("enter course code (e.g. COSI 103A): ")
             schedule=schedule.code(code)
+        elif command in ['de','details']:
+            phrase = input("enter a keyword in the details of the course: ")
+            schedule=schedule.details(phrase)
         else:
             print('command',command,'is not supported')
             continue
-
         print("courses has",len(schedule.courses),'elements',end="\n\n")
         if len(schedule.courses) >0:
             print('here are the first 10')

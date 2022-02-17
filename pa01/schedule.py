@@ -53,16 +53,16 @@ class Schedule:
             return self
 
     def title(self, phrase):
-        return Schedule([course for course in self.courses if phrase in course['name'].split()])
+        return Schedule([course for course in self.courses if phrase in course['name']])
 
     def description(self, phrase):
-        return Schedule([course for course in self.courses if phrase in course['description'].split()])
+        return Schedule([course for course in self.courses if phrase in course['description']])
 
     def code(self, phrase):
         return Schedule([course for course in self.courses if phrase in ' '.join(course['code'])])
 
     def limit(self, limits):
-        return Schedule ([course for course in self.courses if course['limit']!=None and course['limit']<=limits])
+        return Schedule([course for course in self.courses if course['limit']!=None and course['limit']<=limits])
 
     def days(self, phrase):
         course_list = []

@@ -10,7 +10,7 @@ schedule.load_courses()
 # eliminate courses with no students
 schedule = schedule.enrolled(range(5, 1000))
 
-TOP_LEVEL_MENU = '''
+TOP_LEVEL_MENU = """
 quit
 reset
 term  (filter by term)
@@ -21,7 +21,7 @@ title  (filter by phrase in title)
 description (filter by phrase in description)
 dayofweek (filter by day of week, e.g. w,th,f)
 limit (filter by class enrollment limit)
-'''
+"""
 
 terms = {c['term'] for c in schedule.courses}
 

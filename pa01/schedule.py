@@ -74,7 +74,7 @@ class Schedule:
         """ days filters thte course by days of week """
         course_list = []
         for course in self.courses:
-            for time in course['time']:
+            for time in course['times']:
                 # Assume that users will provide days separated with ',', so as to be sonsistent
                 # with the original data and compatible with sourse_search, 'tu' for Tuesday,
                 # 'th' for Thursday, so detecting single character is bad

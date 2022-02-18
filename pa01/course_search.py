@@ -69,30 +69,39 @@ def topmenu():
         elif command in ['days', 'daysofweek']:
             phrase = input("enter the day of the week for the course, separate by commas: ")
             tmp = phrase.split(",")
+            out = "Select courses that are offered on "
             res = []
             for item in tmp:
                 item = item.strip().lower()
                 if item.startswith("m"):
                     res.append("m")
+                    out += "Monday, "
                 elif item.startswith("tu"):
                     res.append("tu")
+                    out += "Tuesday, "
                 elif item.startswith("w"):
                     res.append("w")
+                    out += "Wednesday, "
                 elif item.startswith("th"):
                     res.append("th")
+                    out += "Thursday, "
                 elif item.startswith("f"):
                     res.append("f")
+                    out += "Friday, "
+            idx = out.rfind(",")
+            out = out[:idx] +":"
+            print(out)
             schedule=schedule.days(",".join(res))
         else:
             print('command',command,'is not supported')
             continue
-        print("courses has",len(schedule.courses),'elements',end="\n\n")
+        print("Courses has",len(schedule.courses),'elements',end="\n\n")
         if len(schedule.courses) >=10:
-            print('here are the first 10: ')
+            print('Here are the first 10: ')
             for course in schedule.courses[:10]:
                 print_course(course)
         else:
-            print ("here are the available courses: ")
+            print ("Here are the available courses: ")
             for course in schedule.courses:
                 print_course(course)
         print('\n'*3)

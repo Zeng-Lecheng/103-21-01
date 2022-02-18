@@ -7,7 +7,7 @@ from schedule import Schedule
 
 schedule = Schedule()
 schedule.load_courses()
-schedule = schedule.enrolled(range(5,1000)) # eliminate courses with no students
+schedule = schedule.enrolled(range(5, 1000))  # eliminate courses with no students
 
 TOP_LEVEL_MENU = '''
 quit
@@ -24,48 +24,49 @@ limit (filter by class enrollment limit)
 
 terms = {c['term'] for c in schedule.courses}
 
+
 def topmenu():
-    '''
+    """
     topmenu is the top level loop of the course search app
-    '''
+    """
     global schedule
     while True:
         command = input(">> (press h for help) ")
-        if command=='quit':
+        if command == 'quit':
             return
-        elif command in ['h','help']:
+        elif command in ['h', 'help']:
             print(TOP_LEVEL_MENU)
-            print('-'*40+'\n\n')
+            print('-' * 40 + '\n\n')
             continue
-        elif command in ['r','reset']:
+        elif command in ['r', 'reset']:
             schedule.load_courses()
-            schedule = schedule.enrolled(range(5,1000))
+            schedule = schedule.enrolled(range(5, 1000))
             continue
         elif command in ['t', 'term']:
-            term = input("enter a term:"+str(terms)+":")
+            term = input("enter a term:" + str(terms) + ":")
             schedule = schedule.term([term]).sort('subject')
-        elif command in ['s','subject']:
+        elif command in ['s', 'subject']:
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
-        elif command in ['d','description']:
-            phrase=input('enter a keyword in the description: ')
-            schedule=schedule.description(phrase)
-        elif command in ['tt','title']:
+        elif command in ['d', 'description']:
+            phrase = input('enter a keyword in the description: ')
+            schedule = schedule.description(phrase)
+        elif command in ['tt', 'title']:
             phrase = input("enter a keyword in the title of the course: ")
-            schedule=schedule.title(phrase)
-        elif command in ['l','limit']:
-            limit=int(input("enter in a desired class limit: "))
-            print('The courses listed have an enrollment limit less than or equal to',limit)
-            schedule=schedule.limit(limit)
-        elif command in ['i','instructor']:
-            instructor=input("enter the last name of the desired instructor: ")
-            schedule=schedule.lastname(instructor)
-        elif command in ['c','course']:
-            code=input("enter course code (e.g. COSI 103A): ")
-            schedule=schedule.code(code)
-        elif command in ['de','details']:
+            schedule = schedule.title(phrase)
+        elif command in ['l', 'limit']:
+            limit = int(input("enter in a desired class limit: "))
+            print('The courses listed have an enrollment limit less than or equal to', limit)
+            schedule = schedule.limit(limit)
+        elif command in ['i', 'instructor']:
+            instructor = input("enter the last name of the desired instructor: ")
+            schedule = schedule.lastname(instructor)
+        elif command in ['c', 'course']:
+            code = input("enter course code (e.g. COSI 103A): ")
+            schedule = schedule.code(code)
+        elif command in ['de', 'details']:
             phrase = input("enter a keyword in the details of the course: ")
-            schedule=schedule.details(phrase)
+            schedule = schedule.details(phrase)
         elif command in ['days', 'daysofweek']:
             phrase = input("enter the day of the week for the course, separate by commas: ")
             tmp = phrase.split(",")
@@ -82,27 +83,29 @@ def topmenu():
                     res.append("th")
                 elif item.startswith("f"):
                     res.append("f")
-            schedule=schedule.days(",".join(res))
+            schedule = schedule.days(",".join(res))
         else:
-            print('command',command,'is not supported')
+            print('command', command, 'is not supported')
             continue
-        print("courses has",len(schedule.courses),'elements',end="\n\n")
-        if len(schedule.courses) >=10:
+        print("courses has", len(schedule.courses), 'elements', end="\n\n")
+        if len(schedule.courses) >= 10:
             print('here are the first 10: ')
             for course in schedule.courses[:10]:
                 print_course(course)
         else:
-            print ("here are the available courses: ")
+            print("here are the available courses: ")
             for course in schedule.courses:
                 print_course(course)
-        print('\n'*3)
+        print('\n' * 3)
+
 
 def print_course(course):
-    '''
+    """
     print_course prints a brief description of the course
-    '''
-    print(course['subject'],course['coursenum'],course['section'],
-          course['name'],course['term'],course['instructor'])
+    """
+    print(course['subject'], course['coursenum'], course['section'],
+          course['name'], course['term'], course['instructor'])
+
 
 if __name__ == '__main__':
     INFO = """

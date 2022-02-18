@@ -86,5 +86,5 @@ class Schedule:
         return Schedule(course_list)
 
     def details(self, phrase):
-        """ details filters the course by its details """
+        """ details filters the course by its details"""
         return Schedule([course for course in self.courses if phrase in course['details']])

@@ -18,8 +18,8 @@ instructor (filter by instructor)
 subject (filter by subject, e.g. COSI, or LALS)
 title  (filter by phrase in title)
 description (filter by phrase in description)
-timeofday (filter by day and time, e.g. meets at 11 on Wed)
-limit (filter by class enrollement limit)
+dayofweek (filter by day of week, e.g. w,th,f)
+limit (filter by class enrollment limit)
 '''
 
 terms = {c['term'] for c in schedule.courses}
@@ -66,6 +66,23 @@ def topmenu():
         elif command in ['de','details']:
             phrase = input("enter a keyword in the details of the course: ")
             schedule=schedule.details(phrase)
+        elif command in ['days', 'daysofweek']:
+            phrase = input("enter the day of the week for the course, separate by commas: ")
+            tmp = phrase.split(",")
+            res = []
+            for item in tmp:
+                item = item.strip().lower()
+                if item.startswith("m"):
+                    res.append("m")
+                elif item.startswith("tu"):
+                    res.append("tu")
+                elif item.startswith("w"):
+                    res.append("w")
+                elif item.startswith("th"):
+                    res.append("th")
+                elif item.startswith("f"):
+                    res.append("f")
+            schedule=schedule.days(",".join(res))
         else:
             print('command',command,'is not supported')
             continue
@@ -78,7 +95,6 @@ def topmenu():
             print ("here are the available courses: ")
             for course in schedule.courses:
                 print_course(course)
-        
         print('\n'*3)
 
 def print_course(course):

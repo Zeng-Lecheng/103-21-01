@@ -62,16 +62,16 @@ class Schedule:
 
     def code(self, phrase):
         """ code filters the course by course code"""
-        return Schedule([course for course in self.courses \
+        return Schedule([course for course in self.courses
                          if phrase in ' '.join(course['code'])])
 
     def limit(self, limits):
         """ limit filters the course by capacity """
-        return Schedule([course for course in self.courses \
+        return Schedule([course for course in self.courses
                          if course['limit'] is not None and course['limit'] <= limits])
 
     def days(self, phrase):
-        """ days filters thte course by days of week """
+        """ days filters the course by days of week """
         course_list = []
         for course in self.courses:
             for time in course['times']:

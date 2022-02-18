@@ -13,7 +13,7 @@ TOP_LEVEL_MENU = '''
 quit
 reset
 term  (filter by term)
-course (filter by coursenum, e.g. COSI 103a)
+course (filter by course code, e.g. COSI 103a)
 instructor (filter by instructor)
 subject (filter by subject, e.g. COSI, or LALS)
 title  (filter by phrase in title)

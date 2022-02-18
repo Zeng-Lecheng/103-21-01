@@ -7,7 +7,8 @@ from schedule import Schedule
 
 schedule = Schedule()
 schedule.load_courses()
-schedule = schedule.enrolled(range(5, 1000))  # eliminate courses with no students
+# eliminate courses with no students
+schedule = schedule.enrolled(range(5, 1000))
 
 TOP_LEVEL_MENU = '''
 quit
@@ -56,10 +57,12 @@ def topmenu():
             schedule = schedule.title(phrase)
         elif command in ['l', 'limit']:
             limit = int(input("enter in a desired class limit: "))
-            print('The courses listed have an enrollment limit less than or equal to', limit)
+            print(
+                'The courses listed have an enrollment limit less than or equal to', limit)
             schedule = schedule.limit(limit)
         elif command in ['i', 'instructor']:
-            instructor = input("enter the last name of the desired instructor: ")
+            instructor = input(
+                "enter the last name of the desired instructor: ")
             schedule = schedule.lastname(instructor)
         elif command in ['c', 'course']:
             code = input("enter course code (e.g. COSI 103A): ")
@@ -68,7 +71,8 @@ def topmenu():
             phrase = input("enter a keyword in the details of the course: ")
             schedule = schedule.details(phrase)
         elif command in ['days', 'daysofweek']:
-            phrase = input("enter the day of the week for the course, separate by commas: ")
+            phrase = input(
+                "enter the day of the week for the course, separate by commas: ")
             tmp = phrase.split(",")
             out = "Select courses that are offered on "
             res = []
@@ -90,20 +94,20 @@ def topmenu():
                     res.append("f")
                     out += "Friday, "
             idx = out.rfind(",")
-            out = out[:idx] +":"
+            out = out[:idx] + ":"
             print(out)
-            schedule=schedule.days(",".join(res))
+            schedule = schedule.days(",".join(res))
 
         else:
             print('command', command, 'is not supported')
             continue
-        print("Courses has",len(schedule.courses),'elements',end="\n\n")
-        if len(schedule.courses) >=10:
+        print("Courses has", len(schedule.courses), 'elements', end="\n\n")
+        if len(schedule.courses) >= 10:
             print('Here are the first 10: ')
             for course in schedule.courses[:10]:
                 print_course(course)
         else:
-            print ("Here are the available courses: ")
+            print("Here are the available courses: ")
             for course in schedule.courses:
                 print_course(course)
         print('\n' * 3)

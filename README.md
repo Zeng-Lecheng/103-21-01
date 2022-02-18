@@ -29,6 +29,7 @@ In this team project,  we load a large course scheduling JSON dataset, do some d
     <li>Visual Studio Code</li>
     <li>Git</li>
     <li>GitHub</li>
+    <li>Python</li>
 </ul>
 
 
